@@ -1,4 +1,4 @@
-
+```yaml
 name: Deploy website len S3
 
 on:
@@ -24,12 +24,14 @@ jobs:
             exit 1
           fi
 
-          if grep -Eq 'Nhã Quyên | 233404050202' site/index.html; then
-            echo "LOI: chua dien day du thong tin sinh vien"
+          if grep -Eq 'Ánh Ngọc|233404051053' site/index.html; then
+            echo "OK: Da tim thay thong tin sinh vien"
+          else
+            echo "LOI: Chua dien dung thong tin sinh vien"
             exit 1
           fi
 
-          echo "OK: index.html ton tai va da dien thong tin"
+          echo "OK: Website san sang deploy"
 
       - name: Cau hinh AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -40,3 +42,4 @@ jobs:
 
       - name: Deploy len S3
         run: aws s3 sync site/ s3://cicd-web-anhngoc-2026 --delete
+```
